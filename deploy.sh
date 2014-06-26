@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# ----------------------
-# KUDU Deployment Script
-# Version: 0.1.7
-# ----------------------
-
 # Helpers
 # -------
 
