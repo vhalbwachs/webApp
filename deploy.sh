@@ -130,7 +130,7 @@ fi
 # 5. Run grunt
 if [ -e "$DEPLOYMENT_TARGET/Gruntfile.js" ]; then
   cd "$DEPLOYMENT_TARGET"
-  eval $NPM_CMD install grunt-cli
+  eval $NPM_CMD install grunt-cli grunt
   exitWithMessageOnError "installing grunt failed"
   # echo got to line 135
   ./node_modules/.bin/grunt --no-color build > grunt_output.txt 2>&1
