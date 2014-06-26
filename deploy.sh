@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -o errexit
-
 # ----------------------
 # KUDU Deployment Script
 # Version: 0.1.7
@@ -135,9 +133,7 @@ if [ -e "$DEPLOYMENT_TARGET/Gruntfile.js" ]; then
   eval $NPM_CMD install grunt-cli
   exitWithMessageOnError "installing grunt failed"
   # echo got to line 135
-  [[ -e ./node_modules/.bin/grunt ]] && echo "exists"
-  [[ -x ./node_modules/.bin/grunt ]] && echo "is executable"
-  ./node_modules/.bin/grunt --no-color build
+  ./node_modules/.bin/grunt --no-color build > grunt_output.txt 2>&1
   # echo got to line 137
   exitWithMessageOnError "grunt failed"
   cd - > /dev/null
