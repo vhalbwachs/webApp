@@ -490,18 +490,18 @@ module.exports = function (grunt) {
     grunt.log.writeln('l490');
   grunt.registerTask('build', [
     'clean:dist',
-    // 'bower-install',
-    // 'useminPrepare',
-    // 'concurrent:dist',
-    // 'autoprefixer',
-    // 'concat',
-    // 'ngmin',
-    // 'copy:dist',
-    // 'cdnify',
-    // 'cssmin',
-    // 'uglify',
-    // 'rev',
-    // 'usemin'
+    'bower-install',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'concat',
+    'ngmin',
+    'copy:dist',
+    'cdnify',
+    'cssmin',
+    'uglify',
+    'rev',
+    'usemin'
   ]);
     grunt.log.writeln('l506');
   grunt.registerTask('heroku', function () {
