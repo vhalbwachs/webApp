@@ -141,7 +141,7 @@ if [ -e "$DEPLOYMENT_TARGET/Gruntfile.js" ]; then
   test -x ./node_modules/.bin/grunt
   exitWithMessageOnError "grunt-cli is not installed."
 
-  ./node_modules/.bin/grunt --no-color build > grunt_output.txt 2>&1
+  ./node_modules/.bin/grunt --no-color build
   exitWithMessageOnError "grunt run failed with exit code: $?"
 
   cd - > /dev/null
