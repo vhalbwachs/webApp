@@ -10,7 +10,7 @@
 module.exports = function (grunt) {
   grunt.log.writeln('ln11')
   // Load grunt tasks automatically
-  // require('load-grunt-tasks')(grunt);
+  require('load-grunt-tasks')(grunt);
 
   // Time how long tasks take. Can help when optimizing build times
   // require('time-grunt')(grunt);
@@ -489,7 +489,7 @@ module.exports = function (grunt) {
 
     grunt.log.writeln('l490');
   grunt.registerTask('build', [
-    // 'clean:dist',
+    'clean:dist',
     // 'bower-install',
     // 'useminPrepare',
     // 'concurrent:dist',
