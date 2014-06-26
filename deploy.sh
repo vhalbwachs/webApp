@@ -120,7 +120,7 @@ fi
 # 4. Install bower packages
 if [ -e "$DEPLOYMENT_TARGET/bower.json" ]; then
   cd "$DEPLOYMENT_TARGET"
-  $NPM_CMD install bower
+  eval $NPM_CMD install bower
   exitWithMessageOnError "installing bower failed"
   ./node_modules/.bin/bower install
   exitWithMessageOnError "bower failed"
@@ -130,10 +130,11 @@ fi
 # 5. Run grunt
 if [ -e "$DEPLOYMENT_TARGET/Gruntfile.js" ]; then
   cd "$DEPLOYMENT_TARGET"
-  $NPM_CMD install grunt-cli
+  eval $NPM_CMD install grunt-cli
   exitWithMessageOnError "installing grunt failed"
   # echo got to line 135
-  ./node_modules/.bin/grunt --no-color build
+  eval $NPM_CMD run prod-build
+  # ./node_modules/.bin/grunt --no-color build
   echo $?
   # echo got to line 137
   exitWithMessageOnError "grunt failed"

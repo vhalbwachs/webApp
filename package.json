@@ -73,6 +73,8 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "build": "grunt --no-color build",
+    "prod-build": "grunt --no-color build"
   }
 }
