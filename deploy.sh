@@ -112,7 +112,11 @@ selectNodeVersion
 # 3. Install npm packages
 if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   cd "$DEPLOYMENT_TARGET"
-  eval $NPM_CMD install --production
+
+  # Install all dependencies, including devDependencies--
+  # we need them to build our client-side files, and will
+  # remove them at the end of the script
+  eval $NPM_CMD install
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
 fi
@@ -120,22 +124,26 @@ fi
 # 4. Install bower packages
 if [ -e "$DEPLOYMENT_TARGET/bower.json" ]; then
   cd "$DEPLOYMENT_TARGET"
-  eval $NPM_CMD install bower
-  exitWithMessageOnError "installing bower failed"
+  # Ensure bower is installed
+  test -x ./node_modules/.bin/bower
+  exitWithMessageOnError "Bower is not installed."
+
   ./node_modules/.bin/bower install
-  exitWithMessageOnError "bower failed"
+  exitWithMessageOnError "bower install failed with exit code: $?"
+
   cd - > /dev/null
 fi
 
 # 5. Run grunt
 if [ -e "$DEPLOYMENT_TARGET/Gruntfile.js" ]; then
   cd "$DEPLOYMENT_TARGET"
-  eval $NPM_CMD install grunt-cli grunt
-  exitWithMessageOnError "installing grunt failed"
-  # echo got to line 135
+  # Ensure grunt-cli is installed
+  test -x ./node_modules/.bin/grunt
+  exitWithMessageOnError "grunt-cli is not installed."
+
   ./node_modules/.bin/grunt --no-color build > grunt_output.txt 2>&1
-  # echo got to line 137
-  exitWithMessageOnError "grunt failed"
+  exitWithMessageOnError "grunt run failed with exit code: $?"
+
   cd - > /dev/null
 fi
 ##################################################################################################################################
@@ -147,5 +155,8 @@ if [[ -n "$POST_DEPLOYMENT_ACTION" ]]; then
   "$POST_DEPLOYMENT_ACTION"
   exitWithMessageOnError "post deployment action failed"
 fi
+
+# Remove devDependencies
+eval $NPM_CMD prune --production
 
 echo "Finished successfully."
