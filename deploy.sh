@@ -1,7 +1,6 @@
 #!/bin/bash
 
-set -o verbose
-set -o xtrace
+set -o errexit
 
 # ----------------------
 # KUDU Deployment Script
@@ -136,9 +135,7 @@ if [ -e "$DEPLOYMENT_TARGET/Gruntfile.js" ]; then
   eval $NPM_CMD install grunt-cli
   exitWithMessageOnError "installing grunt failed"
   # echo got to line 135
-  eval $NPM_CMD run prod-build
-  # ./node_modules/.bin/grunt --no-color build
-  echo $?
+  ./node_modules/.bin/grunt --no-color build
   # echo got to line 137
   exitWithMessageOnError "grunt failed"
   cd - > /dev/null
