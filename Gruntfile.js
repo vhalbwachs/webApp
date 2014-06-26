@@ -8,7 +8,7 @@
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
-
+  grunt.log.writeln('ln11')
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
@@ -416,7 +416,7 @@ module.exports = function (grunt) {
       }
     }
   });
-
+    grunt.log.writeln('l419');
   // Used for delaying livereload until after server has restarted
   grunt.registerTask('wait', function () {
     grunt.log.ok('Waiting for server reload...');
@@ -487,6 +487,7 @@ module.exports = function (grunt) {
     ]);
   });
 
+    grunt.log.writeln('l490');
   grunt.registerTask('build', [
     // 'clean:dist',
     // 'bower-install',
@@ -502,7 +503,7 @@ module.exports = function (grunt) {
     // 'rev',
     // 'usemin'
   ]);
-
+    grunt.log.writeln('l506');
   grunt.registerTask('heroku', function () {
     grunt.log.warn('The `heroku` task has been deprecated. Use `grunt build` to build for deployment.');
     grunt.task.run(['build']);
