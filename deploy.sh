@@ -135,6 +135,8 @@ if [ -e "$DEPLOYMENT_TARGET/Gruntfile.js" ]; then
   eval $NPM_CMD install grunt-cli
   exitWithMessageOnError "installing grunt failed"
   # echo got to line 135
+  [[ -e ./node_modules/.bin/grunt ]] && echo "exists"
+  [[ -x ./node_modules/.bin/grunt ]] && echo "is executable"
   ./node_modules/.bin/grunt --no-color build
   # echo got to line 137
   exitWithMessageOnError "grunt failed"
