@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -o verbose
+set -o xtrace
+
 # ----------------------
 # KUDU Deployment Script
 # Version: 0.1.7
